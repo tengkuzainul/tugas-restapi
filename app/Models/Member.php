@@ -12,14 +12,11 @@ class Member extends Model
     protected $table = 'members';
 
     protected $fillable = [
-        'id',
         'nama_member',
         'alamat',
         'gender',
         'no_hp',
-        'email',
-        'created_at',
-        'updated_at',
+        'email'
     ];
 
     public $timestamps = true;
