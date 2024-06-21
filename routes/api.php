@@ -9,3 +9,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/member/get-data', [ApiMemberController::class, 'index']);
+Route::get('/members/show/{id}', [ApiMemberController::class, 'show']);
+Route::put('/update/members/{id}', [ApiMemberController::class, 'update']);

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\MemberResource;
 use App\Models\Member;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ApiMemberController extends Controller
 {
@@ -36,7 +37,7 @@ class ApiMemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 
     }
 
     /**
@@ -44,15 +45,20 @@ class ApiMemberController extends Controller
      */
     public function show(string $id)
     {
-        //
-    }
+        $member = Member::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        if (!$member) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Member not found'
+            ], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Member retrieved successfully',
+            'data' => new MemberResource($member)
+        ], 200);
     }
 
     /**
@@ -60,8 +66,10 @@ class ApiMemberController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // 
     }
+
+
 
     /**
      * Remove the specified resource from storage.
